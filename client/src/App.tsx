@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Router as WouterRouter, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { Layout } from "./components/Layout";
@@ -12,6 +12,8 @@ import Floor from "./pages/Floor";
 import Menu from "./pages/Menu";
 import Performer from "./pages/Performer";
 import Contact from "./pages/Contact";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 function Router() {
   return (
@@ -35,9 +37,11 @@ function App() {
       <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
           <Toaster />
-          <Layout>
-            <Router />
-          </Layout>
+          <WouterRouter base={base}>
+            <Layout>
+              <Router />
+            </Layout>
+          </WouterRouter>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
