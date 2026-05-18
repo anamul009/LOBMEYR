@@ -19,38 +19,28 @@ export default function Contact() {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
+    formData.append("access_key", "b7930356-4ec2-4f22-8d9c-11c8fa78f977");
+    formData.append("subject", "【LOBMEYR】ウェブサイトからのお問い合わせ");
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/kazi@gc-c.co.jp", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          ...data,
-          _subject: "【LOBMEYR】ウェブサイトからのお問い合わせ",
-          _template: "box"
-        })
+        body: formData,
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (result.success) {
         setSubmitStatus("success");
         form.reset();
-        
-        // Reset success message after 5 seconds
         setTimeout(() => setSubmitStatus("idle"), 5000);
       } else {
-        // If AJAX fails (usually because the email isn't activated yet),
-        // fallback to standard HTML submission in a new tab so they can activate it.
-        form.submit();
-        setSubmitStatus("idle");
+        setSubmitStatus("error");
+        setTimeout(() => setSubmitStatus("idle"), 5000);
       }
-    } catch (error) {
-      // If fetch completely fails (CORS before activation), fallback to standard
-      form.submit();
-      setSubmitStatus("idle");
+    } catch {
+      setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus("idle"), 5000);
     } finally {
       setIsSubmitting(false);
     }
@@ -146,7 +136,7 @@ export default function Contact() {
               <h3 className="text-[#c5a55a] text-center text-sm tracking-[0.4em] mb-12"
                  style={{ fontFamily: "'Lato', sans-serif", fontWeight: 300 }}>INQUIRY FORM</h3>
                  
-              <form action="https://formsubmit.co/kazi@gc-c.co.jp" method="POST" target="_blank" onSubmit={handleSubmit} className="space-y-8 relative">
+              <form onSubmit={handleSubmit} className="space-y-8 relative">
                 <AnimatePresence>
                   {submitStatus === "success" && (
                     <motion.div 
