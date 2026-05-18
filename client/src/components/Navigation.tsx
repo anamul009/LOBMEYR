@@ -31,10 +31,11 @@ export function Navigation() {
         }`}>
         <div className="flex items-center justify-between px-6 md:px-12 py-5">
           <Link href="/" className="flex items-center gap-3 group" aria-label="LOBMEYRトップへ">
-            <span className="text-xl md:text-2xl tracking-[0.35em] text-[#f0ebe3] group-hover:text-[#c5a55a] transition-colors duration-500"
-              style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
-              LOBMEYR
-            </span>
+            <img
+              src="/logo.png"
+              alt="LOBMEYR"
+              className="h-32 md:h-40 w-auto object-contain transition-opacity duration-500 group-hover:opacity-80"
+            />
           </Link>
 
           <nav className="hidden xl:flex items-center gap-8" aria-label="メインナビゲーション">
@@ -77,13 +78,7 @@ export function Navigation() {
             transition={{ duration: 0.5 }}
             className="fixed inset-0 z-40 bg-[#0d0d0d]/98 backdrop-blur-2xl flex flex-col items-start justify-center px-12 md:px-20"
             role="dialog" aria-modal="true" aria-label="ナビゲーションメニュー">
-            <button onClick={() => setIsOpen(false)} aria-label="メニューを閉じる"
-              className="absolute top-5 right-6 flex flex-col items-center gap-1 text-[#f0ebe3]">
-              <X size={24} />
-              <span className="text-[9px] tracking-[0.3em]" style={{ fontFamily: "'Lato', sans-serif", fontWeight: 300 }}>CLOSE</span>
-            </button>
-
-            <nav className="flex flex-col gap-6 mb-16" aria-label="モバイルナビゲーション">
+<nav className="flex flex-col gap-6 mb-16" aria-label="モバイルナビゲーション">
               {NAV_ITEMS.map((item, i) => {
                 const isActive = location === item.path;
                 return (
