@@ -32,6 +32,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lato:wght@100;300;400&family=Noto+Serif+JP:wght@200;300;400;500&display=swap" rel="stylesheet" />
 
+    <!-- GitHub Pages SPA: restore path from 404 redirect -->
+    <script>
+      (function() {
+        var p = window.location.search.match(/[?&]p=([^&]*)/);
+        if (p && p[1]) {
+          var path = p[1].replace(/~and~/g, '&');
+          window.history.replaceState(null, null,
+            window.location.pathname + '/' + path +
+            window.location.search.replace(/[?&]p=[^&]*/, '').replace(/^&/, '?') +
+            window.location.hash
+          );
+        }
+      })();
+    </script>
+
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -52,7 +67,7 @@
       "servesCuisine": ["Wine Bar", "Sake Bar"]
     }
     </script>
-    <script type="module" crossorigin src="/LOBMEYR/assets/index-C6RyN4Kq.js"></script>
+    <script type="module" crossorigin src="/LOBMEYR/assets/index-CLz36zr2.js"></script>
     <link rel="stylesheet" crossorigin href="/LOBMEYR/assets/index-QI2DcFx6.css">
   </head>
   <body>
