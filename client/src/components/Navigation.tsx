@@ -32,7 +32,7 @@ export function Navigation() {
         <div className="flex items-center justify-between px-6 md:px-12 py-5">
           <Link href="/" className="flex items-center gap-3 group" aria-label="LOBMEYRトップへ">
             <img
-              src="/logo.png"
+              src={`${import.meta.env.BASE_URL}logo.png`}
               alt="LOBMEYR"
               className="h-32 md:h-40 w-auto object-contain transition-opacity duration-500 group-hover:opacity-80"
             />
