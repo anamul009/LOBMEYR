@@ -4,7 +4,7 @@ import { MapPin, Clock, Phone, Send, CheckCircle2, AlertCircle } from "lucide-re
 import { GrainOverlay, FadeInSection, StaggerText, NordicDivider, GoldEmblem, GoldLine } from "../components/shared";
 import { IMAGES } from "../lib/constants";
 
-export default function Contact() {
+export default function Contact({ showForm = true }: { showForm?: boolean }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const photoY = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
@@ -131,7 +131,7 @@ export default function Contact() {
             </FadeInSection>
           </div>
 
-          <div className="max-w-2xl mx-auto border-t border-[#c5a55a]/10 pt-20">
+          {showForm && <div className="max-w-2xl mx-auto border-t border-[#c5a55a]/10 pt-20">
             <FadeInSection>
               <h3 className="text-[#c5a55a] text-center text-sm tracking-[0.4em] mb-12"
                  style={{ fontFamily: "'Lato', sans-serif", fontWeight: 300 }}>INQUIRY FORM</h3>
@@ -216,7 +216,7 @@ export default function Contact() {
                 </div>
               </form>
             </FadeInSection>
-          </div>
+          </div>}
 
         </div>
       </div>

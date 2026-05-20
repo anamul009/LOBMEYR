@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { toast } from "sonner";
@@ -7,14 +7,7 @@ import { NAV_ITEMS } from "../lib/constants";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 80);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const mainNav = NAV_ITEMS.slice(1);
 
@@ -26,9 +19,7 @@ export function Navigation() {
     <>
       <motion.header initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-          scrolled ? "bg-[#0d0d0d]/90 backdrop-blur-xl border-b border-[#c5a55a]/5" : "bg-transparent"
-        }`}>
+        className="fixed top-0 left-0 right-0 z-50 bg-transparent">
         <div className="flex items-center justify-between px-6 md:px-12 py-5">
           <Link href="/" className="flex items-center gap-3 group" aria-label="LOBMEYRトップへ">
             <img

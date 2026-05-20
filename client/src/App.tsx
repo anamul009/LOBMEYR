@@ -12,6 +12,7 @@ import Floor from "./pages/Floor";
 import Menu from "./pages/Menu";
 import Performer from "./pages/Performer";
 import Contact from "./pages/Contact";
+import EventDetail from "./pages/EventDetail";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/concept" component={Concept} />
       <Route path="/event" component={Event} />
+      <Route path="/event/:id" component={EventDetail} />
       <Route path="/floor" component={Floor} />
       <Route path="/menu" component={Menu} />
       <Route path="/performer" component={Performer} />

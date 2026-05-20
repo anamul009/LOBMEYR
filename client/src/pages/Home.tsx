@@ -189,7 +189,7 @@ export default function Home() {
       <Floor />
       <Menu />
       <Performer />
-      <Contact />
+      <Contact showForm={false} />
     </>
   );
 }
